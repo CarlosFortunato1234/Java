@@ -23,17 +23,21 @@ public class Questao_4 {
     while (numero != 0) {
      
         soma = soma + numero; 
-                 System.out.println("Digite outro numero: ");
+             System.out.println("Digite outro numero: ");
                 numero = Entradauser.nextInt();
 
-    }
-    System.out.println("A soma total é: " + soma);
+            }
+        
+             System.out.println("A soma total é: " + soma);
     
-}   catch (InputMismatchException e) {
-            System.out.println("Digite apenas numeros inteiros!");
-}
+
+        }
+   catch (InputMismatchException e) {
+    
+             System.out.println("Digite apenas numeros inteiros!");
+        }
      Entradauser.close();
+        }
     }
-}
 
      
