@@ -34,7 +34,7 @@ public class Questao_5 {
 
             double areaQuadrado;
             areaQuadrado = lado * lado; 
-             System.out.println("A área do quadrado é:" + areaQuadrado + "m²"  );    
+             System.out.println("A área do quadrado é:" + areaQuadrado + " m²"  );    
             
 
 
@@ -52,7 +52,7 @@ public class Questao_5 {
              
             areaCirculo = pi * (raioCirculo * raioCirculo );
 
-             System.out.println("A área do círculo é:" + areaCirculo + "m²"  ); 
+             System.out.println("A área do círculo é:" + areaCirculo + " m²"  ); 
             break; 
         }
 
@@ -66,7 +66,7 @@ public class Questao_5 {
 
               perimetroRetangulo = 2 * (baseRetangulo + alturaRetangulo);
                       
-              System.out.println("O perímetro do retângulo é: " + perimetroRetangulo + "m"  ); 
+              System.out.println("O perímetro do retângulo é: " + perimetroRetangulo + " m"  ); 
             
               break;
         }
@@ -75,13 +75,18 @@ public class Questao_5 {
               System.out.println("Encerrando o programa...");
               return;
         }
+        default: {
+    System.out.println("Opção inválida!");
+               break;
+        }
 
 
                 } // fecha chaves do switch
-            }
+            } //fecha o try
        catch (InputMismatchException e) {
                System.out.println("Erro: digite apenas valores numéricos válidos.");
       }
+         Entradauser.close();
 
     }
 }
