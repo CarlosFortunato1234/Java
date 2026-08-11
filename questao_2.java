@@ -8,7 +8,7 @@ public class Questao_2{
         Scanner sc = new Scanner(System.in);
 
         try {
-
+//.
             System.out.print("Digite a sua idade: ");
             int idade = sc.nextInt();
            
