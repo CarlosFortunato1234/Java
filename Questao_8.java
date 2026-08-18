@@ -19,7 +19,7 @@ public class Questao_8 {
             int numero = Entradauser.nextInt();
 
             if (numero > 0) {
-
+ 
                 int contador = 0;
 
                //não deu tempo de terminar
