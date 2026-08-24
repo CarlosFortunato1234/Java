@@ -7,7 +7,7 @@ public class Questao_1 {
 
         Scanner Entradauser = new Scanner(System.in);
 
-        System.out.println("=== CADASTRO E ANÁLISE DE NOTAS ===");
+        System.out.println(" CADASTRO E ANÁLISE DE NOTAS");
         System.out.println();
 
         try {
