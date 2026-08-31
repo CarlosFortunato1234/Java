@@ -1,3 +1,4 @@
+package Java;
 /* # Questão 3: Separação de Números Pares e Ímpares
 Desenvolva um programa que leia 15 números inteiros e
  armazene-os em um array. Depois, percorra o array

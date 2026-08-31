@@ -1,3 +1,4 @@
+package Java;
 /* # Questão1 Cadastro e análise de notas com array desenvolva um programa que solicite ao usuário a quantidade
 de alunos de uma turma e armazene as notas deles em um array de double. O programa deve calcular 
 e exibir a média da turma, a maior nota, a menor nota,
