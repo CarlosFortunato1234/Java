@@ -1,11 +1,11 @@
-package Java;
+
 import java.util.InputMismatchException;
 import java.util.Scanner;
 
 public class Questao_2vet {
 
     public static void main(String[] args) {
-
+//
         Scanner Entradauser = new Scanner(System.in);
 
         System.out.println("Separação de números parese ímpares!");
