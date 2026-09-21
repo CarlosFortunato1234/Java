@@ -1,4 +1,4 @@
-package Java;
+
 /*Questão 2: Busca de Valores em um Array
 Crie um programa que leia 10 números inteiros e armazene-os em um array. Em seguida, solicite outro número ao
 usuário e informe se ele está presente no array. Caso esteja, exiba todas as posições em que foi encontrado;

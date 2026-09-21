@@ -1,4 +1,4 @@
-package Java;
+
 /*# Questão 6: Verificação de Número Par ou Ímpar com do/while
 
 Implemente um programa que utilize um laço do/while para ler números do usuário e 

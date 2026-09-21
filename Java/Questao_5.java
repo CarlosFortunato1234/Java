@@ -1,4 +1,4 @@
-package Java;
+
 /*# Questão 5: Menu com switch
 
 Crie um programa de menu que oferece as seguintes opções: (1) Calcular área de um quadrado, 

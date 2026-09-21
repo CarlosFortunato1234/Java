@@ -1,4 +1,4 @@
-package Java;
+
 /*# Questão 3: Tabuada com Laço for
 
 Implemente um programa que leia um número inteiro do usuário e exiba a tabuada desse número (de 1 a 10) utilizando um laço for. 

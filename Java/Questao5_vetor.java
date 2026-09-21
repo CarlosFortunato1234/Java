@@ -1,4 +1,4 @@
-package Java;
+
 /*# Questão 5: Cadastro de Pessoas sem Nomes Repetidos
 Implemente um programa que utilize um HashSet<String> para cadastrar nomes
 de pessoas. O programa deve permitir 

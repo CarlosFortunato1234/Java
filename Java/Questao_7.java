@@ -1,4 +1,4 @@
-package Java;
+
 /*
 Desenvolva um programa que converta temperaturas entre Celsius e Fahrenheit.
 Ofereça um menu com switch para escolher a conversão desejada. Utilize Scanner para entrada

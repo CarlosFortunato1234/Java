@@ -1,4 +1,4 @@
-package Java;
+
 /*# Questão 6: Controle de Estoque com HashMap
 Desenvolva um sistema simples de estoque utilizando um HashMap<String, Integer>,
 no qual a chave representa o nome do produto e o valor representa a quantidade disponível.

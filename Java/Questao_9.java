@@ -1,4 +1,4 @@
-package Java;
+
 /*# Questão 9: Validação de Entrada com Múltiplos try/catch
 
 Implemente um programa que leia três números decimais do usuário e calcule a média aritmética. Utilize múltiplos blocos try/catch para tratar diferentes tipos de exceção 

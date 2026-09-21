@@ -1,4 +1,4 @@
-package Java;
+
 /*
 Desenvolva um programa em Java que leia dois números inteiros do usuário 
 e exiba o resultado das operações básicas (adição, subtração, multiplicação, divisão e módulo).

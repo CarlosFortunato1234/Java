@@ -1,10 +1,11 @@
+package Objetos;
 import java.util.Scanner;
 
 public class Revenda {
 
     public static void main(String[] args) {
         System.out.println("Revenda");
-        Scanner s = new Scnner (System.in);
+        Scanner s = new Scanner (System.in);
         System.out.println("Digite a cor do carro: ");
         String cor = s.next();
         System.out.println("Digite o ano do carro"); 

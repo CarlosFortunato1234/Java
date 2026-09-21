@@ -1,4 +1,4 @@
-package Java;
+
 /* # Questão 4: Soma de Números com while
 
 Desenvolva um programa que leia números inteiros do usuário em um laço while 
