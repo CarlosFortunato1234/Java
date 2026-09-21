@@ -21,7 +21,7 @@ public class Exercicio_1 {
             opt = buscarOperacao(s);
             switch (opt) { 
                 case 0:
-                    System.out.println("Adeus!");
+                    System.out.println("Tchau!");
                     break;
                 case 1:
                     System.out.println("Digite o nome do produto: ");
@@ -84,7 +84,8 @@ public class Exercicio_1 {
         valorTotal += p.calcularValorEstoque();
                 }
                 System.out.println("Valor total armazenado no estoque: R$ " + valorTotal);
-
+                break; 
+                
                   default:
                     System.out.println("Operação inválida.");
                     break;
