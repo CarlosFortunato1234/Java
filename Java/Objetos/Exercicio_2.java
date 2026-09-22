@@ -7,16 +7,15 @@ import java.util.Scanner;
 public class Exercicio_2 {
     public static void main(String[] args) {
         Scanner s = new Scanner(System.in);
-        ArrayList<Produto> produtos = new ArrayList<>();
+        ArrayList<Aluno> alunos = new ArrayList<>();
         int opt = -1;
         do {
-            System.out.println("==== REVENDA ====");
+            System.out.println("=========== SISTEMA DE GERENCIAMENTO DE CLASSE  =======");
             System.out.println("0. Sair");
-            System.out.println("1. Cadastrar Produto");
-            System.out.println("2. Vender Produto");
-            System.out.println("3. Entrada de Produto");
-            System.out.println("4. Listar Produtos");
-            System.out.println("5. Mostrar valor total em estoque");
+            System.out.println("1. Cadastrar Aluno");
+            System.out.println("2. Exibir dados dos alunos");
+            System.out.println("3. Mostrar quantos alunos foram aprovados");
+            System.out.println("4. Mostrar a mior média da turma");
             System.out.println("Digite a operação: ");
             opt = buscarOperacao(s);
             switch (opt) { 
@@ -24,71 +23,61 @@ public class Exercicio_2 {
                     System.out.println("Tchau!");
                     break;
                 case 1:
-                    System.out.println("Digite o nome do produto: ");
+                    System.out.println("Digite o nome do aluno: ");
                     String nome = s.next();
-                    System.out.println("Digite o preço do produto");
-                    double preco = s.nextDouble();
-                    System.out.println("Digite a quantidade do produto: ");
-                    int quantidade = s.nextInt();
-                    Produto produto = new Produto (
+                    System.out.println("Digite a idade do aluno");
+                    int idade  = s.nextInt();
+                    System.out.println("Digite a primeira nota do aluno (a): ");
+                    double nota1 = s.nextDouble();
+                    System.out.println("Digite a segunda nota do aluno (a): ");
+                    double nota2 = s.nextDouble();
+
+                    Aluno aluno = new Aluno (
                       nome,
-                      preco,
-                      quantidade
+                      idade,
+                      nota1,
+                      nota2
                     );
-                    produtos.add(produto);
+                    alunos.add(aluno);
                     break;
                 case 2:
-                    System.out.println("Digite o nome do produto: ");
-                    String nomeVenda = s.next();
-
-                    System.out.println("Digite a quantidade que está sendo vendida: ");
-                    int quantidadeVenda = s.nextInt();
-
-                    for (Produto produtoVenda : produtos) {
-                        if (produtoVenda.nome.equals(nomeVenda)) {
-                             produtoVenda.removerEstoque(quantidadeVenda);
-                               System.out.println("Venda realizada com sucesso!");
-                        }
-                    }
+                 for (Aluno a : alunos) {
+                          a.estaAprovado();
+                         a.exibirSituacao();
+                     }
                     break;
 
                  case 3:
-                    System.out.println("Digite o nome do produto: ");
-                    String nomeCompra = s.next();
+                    int aprovados = 0;
 
-                    System.out.println("Digite a quantidade que está sendo realizada a entrada: ");
-                    int quantidadeCompra = s.nextInt();
-
-                    for (Produto produtoCompra : produtos) {
-                        if (produtoCompra.nome.equals(nomeCompra)) {
-                             produtoCompra.adicionarEstoque(quantidadeCompra);
-                               System.out.println("Compra realizada com sucesso!");
-                        }
+                    for (Aluno a : alunos) {
+                        a.estaAprovado();
+                    
+                        if (a.aprovado) {
+                        aprovados++;
                     }
+                    }
+  
+                    System.out.println("Quantidade de alunos aprovados: " + aprovados);
 
                     break;
 
 
                 case 4:
-                    for(Produto p : produtos) {
-            
-                        p.exibirDados();
+                    double maiorMedia = 0;
 
-                    }
-                    break;
+                    for (Aluno a : alunos ) { 
+                         double media = a.calcularMedia();
 
-                case 5: 
-                 double valorTotal = 0; 
-
-                 for (Produto p : produtos) {
-        valorTotal += p.calcularValorEstoque();
+                         if (media > maiorMedia) {
+                            maiorMedia = media;
+                    } 
                 }
-                System.out.println("Valor total armazenado no estoque: R$ " + valorTotal);
-                break; 
-                
-                  default:
-                    System.out.println("Operação inválida.");
-                    break;
+
+                System.out.println("A maior média da turma é: " + maiorMedia);
+
+                break;
+
 
             }
         } while (opt != 0);
