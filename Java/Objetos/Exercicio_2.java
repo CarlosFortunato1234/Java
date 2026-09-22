@@ -24,6 +24,7 @@ public class Exercicio_2 {
                     break;
                 case 1:
                     System.out.println("Digite o nome do aluno: ");
+                    s.nextLine();  // limpar o enter
                     String nome = s.nextLine();
                     System.out.println("Digite a idade do aluno");
                     int idade  = s.nextInt();

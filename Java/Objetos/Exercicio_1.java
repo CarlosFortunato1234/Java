@@ -25,6 +25,7 @@ public class Exercicio_1 {
                     break;
                 case 1:
                     System.out.println("Digite o nome do produto: ");
+                    s.nextLine(); // limpar o enter
                     String nome = s.nextLine();
                     System.out.println("Digite o preço do produto");
                     double preco = s.nextDouble();
@@ -39,7 +40,8 @@ public class Exercicio_1 {
                     break;
                 case 2:
                     System.out.println("Digite o nome do produto: ");
-                    String nomeVenda = s.next();
+                    s.nextLine(); // limpar o enter
+                    String nomeVenda = s.nextLine();
 
                     System.out.println("Digite a quantidade que está sendo vendida: ");
                     int quantidadeVenda = s.nextInt();
@@ -54,7 +56,8 @@ public class Exercicio_1 {
 
                  case 3:
                     System.out.println("Digite o nome do produto: ");
-                    String nomeCompra = s.next();
+                    s.nextLine(); // limpar o enter
+                    String nomeCompra = s.nextLine();
 
                     System.out.println("Digite a quantidade que está sendo realizada a entrada: ");
                     int quantidadeCompra = s.nextInt();
