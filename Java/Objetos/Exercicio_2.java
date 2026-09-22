@@ -24,7 +24,7 @@ public class Exercicio_2 {
                     break;
                 case 1:
                     System.out.println("Digite o nome do aluno: ");
-                    String nome = s.next();
+                    String nome = s.nextLine();
                     System.out.println("Digite a idade do aluno");
                     int idade  = s.nextInt();
                     System.out.println("Digite a primeira nota do aluno (a): ");

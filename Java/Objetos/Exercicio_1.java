@@ -25,7 +25,7 @@ public class Exercicio_1 {
                     break;
                 case 1:
                     System.out.println("Digite o nome do produto: ");
-                    String nome = s.next();
+                    String nome = s.nextLine();
                     System.out.println("Digite o preço do produto");
                     double preco = s.nextDouble();
                     System.out.println("Digite a quantidade do produto: ");
@@ -85,7 +85,7 @@ public class Exercicio_1 {
                 }
                 System.out.println("Valor total armazenado no estoque: R$ " + valorTotal);
                 break; 
-                
+
                   default:
                     System.out.println("Operação inválida.");
                     break;
