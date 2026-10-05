@@ -7,8 +7,9 @@ import java.util.Scanner;
 public class Main {
     public static void main(String[] args) {
         Scanner s = new Scanner(System.in);
-        ArrayList<Robo> robos = new ArrayList<>();
+        ArrayList<Robo> robos = new ArrayList<>(); //arraylist dos meus robos no programa
         int opt = -1;
+        // Esse aqui é o meu MENU com as interações principais do usuário
         do {
             System.out.println("=========== CAMPEONATO DE ROBOS  ===========");
             System.out.println("BEEEM VINDO AO CAMPEONATO DE ROBOS MAIS BRUTAL DA HISTÓRIA!");
@@ -22,7 +23,7 @@ public class Main {
             System.out.println("6. Emitir estatísticas: ");
             System.out.println("7. Excluir participante: ");
             System.out.println("Digite a operação: ");
-            opt = buscarOperacao(s);
+            opt = leitorMenu(s); //buscar operação é um método que fiz lá no final da main
             switch (opt) {
                 case 0:
                     System.out.println("Tchau!");
@@ -35,30 +36,32 @@ public class Main {
                     System.out.println("2- Consultar Robo: ");
                     System.out.println("3- Listar todos os robos: ");
                     System.out.println("Digite uma opção: ");
-                    int opcaoRobo = lerInteiro(s);
+                    int opcaoRobo = leitorGeral(s);
+
+                    //esse é o if caso o usuário escolha cadastrar o robo: 
                     if (opcaoRobo == 1) {
 
                         System.out.println("Digite o código do robo: ");
-                        int codigo = lerInteiro(s);
+                        int codigo = leitorGeral(s);
 
                         // VALIDAÇÕES
                         while (codigo <= 0) {
                             System.out.println("Código inválido! Digite um código positivo:");
-                            codigo = lerInteiro(s);
+                            codigo = leitorGeral(s);
                         }
-                        boolean codigoExiste = false;
+                        boolean codigoExiste = false; //aqui já deixo pré definido que código não existe
 
-                        for (Robo r : robos) {
+                        for (Robo r : robos) {  // depois lanço esse for percorrendo os robos, tentando achar um código do robo = o código que o cara escreveu
                             if (r.codigo == codigo) {
                                 codigoExiste = true;
                                 break;
                             }
                         }
 
-                        while (codigoExiste == true) {
+                        while (codigoExiste == true) { //se cair nessse while, de código existe = true, ele vai ficar tentando encontrar se o novo código que o usuário digitou já não existe.
                             System.out.println("Código já cadastrado! Digite outro: ");
                             ;
-                            codigo = lerInteiro(s);
+                            codigo = leitorGeral(s);
 
                             codigoExiste = false;
 
@@ -77,18 +80,18 @@ public class Main {
 
                         String nome = s.nextLine();
                         System.out.println("Digite o ataque do robo entre 10 e 30:  ");
-                        int ataque = lerInteiro(s);
+                        int ataque = leitorGeral(s); //criei esse leitorGeral baseado no scanner, pois assim ele já realiza as validações que o exercício pede acerca de entradas dos usuários
 
                         while (ataque < 10 || ataque > 30) {
                             System.out.println("Ataque inválido! Digite um ataque entre 10 e 30! ");
-                            ataque = lerInteiro(s);
+                            ataque = leitorGeral(s);
                         }
                         System.out.println("Digite a defesa do robo entre 0 e 20: ");
-                        int defesa = lerInteiro(s);
+                        int defesa = leitorGeral(s);
 
                         while (defesa < 0 || defesa > 20) {
                             System.out.println("Defesa Inválida! Digite uma defesa entre 0 e 20: ");
-                            defesa = lerInteiro(s);
+                            defesa = leitorGeral(s);
                         }
 
                         Robo robo = new Robo(
@@ -101,13 +104,13 @@ public class Main {
                                 0,
                                 0,
                                 0);
-                        robos.add(robo);
+                        robos.add(robo); //aqui eu estou guardando o robo recém criado na lista dos robos existentes.
 
                         System.out.println("Robô cadastrado com sucesso!");
 
                     } else if (opcaoRobo == 2) {
                         System.out.println("Digite o código do robo que deseja consultar: ");
-                        int codigoBusca = lerInteiro(s);
+                        int codigoBusca = leitorGeral(s);
 
                         boolean encontrado = false;
 
@@ -144,10 +147,10 @@ public class Main {
                         } else {
                             System.out.println("====== LISTA DE ROBÔS ======");
                             for (Robo r : robos) {
-                                System.out.println("Código: " + r.codigo + " | Nome: " + r.nome);
-                                System.out.println("Ataque: " + r.ataque + " | Defesa: " + r.defesa + " | Energia: " + r.energia);
-                                System.out.println("Vitórias: " + r.vitorias + " | Derrotas: " + r.derrotas
-                                        + " | Pontos: " + r.pontos + " | Combates: " + r.combates);
+                                System.out.println("Código: " + r.codigo + " || Nome: " + r.nome);
+                                System.out.println("Ataque: " + r.ataque + " || Defesa: " + r.defesa + " ||Energia: " + r.energia);
+                                System.out.println("Vitórias: " + r.vitorias + " || Derrotas: " + r.derrotas
+                                        + " || Pontos: " + r.pontos + " || Combates: " + r.combates);
                                 r.verificarEnergia(); // mostra Disponível (energia >= 30) ou Em recuperação (energia < 30)
                                 System.out.println("----------------------------");
                             }
@@ -162,10 +165,10 @@ public class Main {
                          case 2:
                     // INCIO DO CASE 2
                     System.out.println("Digite o código do primeiro robo: ");
-                    int codigo1 = lerInteiro(s);
+                    int codigo1 = leitorGeral(s);
 
                     System.out.println("Digite o código do segundo robo: ");
-                    int codigo2 = lerInteiro(s);
+                    int codigo2 = leitorGeral(s);
 
                     // abaixo eu busco os dois robos na lista
                     // começo com robo1 e robo2 = null, e caso ele encontre o código na lista
@@ -306,7 +309,7 @@ public class Main {
                      System.out.println("Cada bloco de 10 de energia custará um ponto no campeonato.");
                      System.out.println("============================================================ ");
                      System.out.println("Digite o código do robo:");
-                     codigoRobo = lerInteiro(s);
+                     codigoRobo = leitorGeral(s);
 
                      //validações se o código do robo é valido: 
 
@@ -323,7 +326,7 @@ public class Main {
                        System.out.println("Robô não encontrado!");
                      } else {
                         System.out.println("Digite a quantidade de energia: ");
-                        qtdeEnergia = lerInteiro(s);
+                        qtdeEnergia = leitorGeral(s);
 
                         // validação se a quantidade de energia é valida (positiva, múltipla de 10 e que não passe de 100)
                         // e se o robo tem pontos suficientes: quem faz essas validações é o método
@@ -490,7 +493,7 @@ public class Main {
                         System.out.println("Nenhum robô cadastrado!");
                     } else {
                         System.out.println("Digite o código do robô que deseja excluir: ");
-                        int codigoExcluir = lerInteiro(s);
+                        int codigoExcluir = leitorGeral(s);
 
                         // busco o robô, se continuar null é pq ele não existe
                         Robo roboExcluir = null;
@@ -519,7 +522,8 @@ public class Main {
         s.close();
     }
 
-    public static int buscarOperacao(Scanner s) {
+    //CRIEI o leitor menu especificamente para o menu principal, ele pede especificamente operações de 0 a 7, faz try cath para letras.
+    public static int leitorMenu(Scanner s) {
         int opt = -1;
         do {
             try {
@@ -539,8 +543,12 @@ public class Main {
         } while (opt < 0);
 
         return opt;
+
+
     }
-    public static int lerInteiro(Scanner s) {
+
+    // O meu leitor geral está presente no corpo da main inteira, ele valida com try catch, mas ao contrário do leitor menu, ele não tem a restrição do 0 a 7
+    public static int leitorGeral(Scanner s) {
     int numero = 0;
     boolean valido = false;
 
@@ -556,8 +564,10 @@ public class Main {
 
     return numero;
 }
-    // combate usado no case 2 e na RODADA GERAL (case 4): a regra fica num lugar só
-    // as validações (existe, energia >= 30) já foram feitas antes de chamar
+    
+
+
+//OPTEI por fazer o executar combate apenas no case 4, pois como o combate geral pode ficar diferente do combate específico, preferi separar os métodos usados no case 2 e 4.
     public static void executarCombate(Robo robo1, Robo robo2) {
         System.out.println("COMBATE AUTORIZADO! ");
 
@@ -643,7 +653,17 @@ public class Main {
 
     // compara dois robôs pela regra da classificação, devolve true se o "a" fica NA FRENTE do "b"
     // ordem dos critérios: mais pontos, mais vitórias, mais energia e por último menor código
+
+
+    //O veio antes recebe dois robos (robo a e robo b) e responde true se o a deve ficar na frente do b na classificação, ou false se não, para isso uso boolean tambem.
     public static boolean veioAntes(Robo a, Robo b) {
+      // os meus ifs seguem a ordem do enunciado sendo =! diferente de.
+
+      //ele funciona como um boolean, por exemplo
+      //se a.pontos = 6 
+      //e b.pontos = 7
+
+      //os pontos são diferentes, mas 6 > 7? FALSE, logo, o return será false, assim b será maior que a. 
         if (a.pontos != b.pontos) {
             return a.pontos > b.pontos;
         }
@@ -685,4 +705,3 @@ public class Main {
     }
 }
 
-//resolver problema de commit
