@@ -272,9 +272,49 @@ public class Main {
                     }
 
                     break;
-                // FIM DO CASE 2
+
                 case 3:
                     // INICIO DO CASE 3
+
+                    int codigoRobo = 0;
+                      int qtdeEnergia = 0;
+
+                     System.out.println("====== RECUPERAÇÃO DE ENERGIA ====== ");
+                     System.out.println("ATENÇÃO! O número deverá ser positivo e múltiplo de 10! ");
+                     System.out.println("Cada bloco de 10 de energia custará um ponto no campeonato.");
+                     System.out.println("============================================================ ");
+                     System.out.println("Digite o código do robo:");
+                     codigoRobo = lerInteiro(s);
+
+                     //validações se o código do robo é valido: 
+
+                     Robo roboRecuperar = null;
+                     //guardo o robô, se continuar null é pq ele nao existe
+
+                     for (Robo r : robos) {
+                        if (r.codigo == codigoRobo) {
+                            roboRecuperar = r;
+                        }
+                     }
+
+                     if (roboRecuperar == null) {
+                       System.out.println("Robô não encontrado!");
+                     } else {
+                        System.out.println("Digite a quantidade de energia: ");
+                        qtdeEnergia = lerInteiro(s);
+
+                        // validação se a quantidade de energia é valida (positiva, múltipla de 10 e que não passe de 100)
+                        // e se o robo tem pontos suficientes: quem faz essas validações é o método
+                        // recuperarEnergia da classe Robo, pq são regras que protegem a energia e os pontos do robô
+                        // se alguma condição falhar ele recusa a operação inteira e não altera nada
+                        roboRecuperar.recuperarEnergia(qtdeEnergia);
+
+                        System.out.println("Situação atual de " + roboRecuperar.nome + ": energia = " + roboRecuperar.energia + " | pontos = " + roboRecuperar.pontos);
+                    }
+
+
+
+                    
                     break;
                 // FIM DO CASE 3
                 case 4:
