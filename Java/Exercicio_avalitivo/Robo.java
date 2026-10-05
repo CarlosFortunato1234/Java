@@ -96,5 +96,37 @@ public class Robo {
          System.out.println("Energia recuperada com sucesso! ");
       }
    }
+
+   //método de ataque 
+
+   public int atacar (Robo adversario, int rodada) {  
+       int dano = this.ataque - adversario.defesa; 
+
+       if (dano < 5) { 
+         dano = 5;                  // isso é para definir que o dano mínimo é 5. 
+           }
+      
+      if (rodada  % 2 == 0) {
+         dano = dano + 5;             //bônus das rodadas pares
+      }
+
+      adversario.receberDano (dano);
+         return dano; 
+      }
+         // folga da rodada geral: o robô ganha 1 ponto, mas NÃO conta como combate (folga não entra no aproveitamento)
+   public void receberFolga() {
+      pontos = pontos + 1;
+   }
+
+   // aproveitamento = vitórias / combates * 100
+   // o atributo "combates" é o que o enunciado pede pra identificar: empate conta como combate (o empatar() já soma) e folga não
+   public double calcularAproveitamento() {
+      if (combates == 0) {
+         return 0; // quem nunca lutou é ignorado na Main
+      }
+      return vitorias * 100.0 / combates; // 100.0 pra não dar divisão de inteiros
+   }
+     
   }
+
     
