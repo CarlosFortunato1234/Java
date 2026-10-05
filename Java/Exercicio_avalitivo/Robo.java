@@ -96,5 +96,24 @@ public class Robo {
          System.out.println("Energia recuperada com sucesso! ");
       }
    }
+
+   //classe de ataque 
+
+   public int atacar (Robo adversario, int rodada) {  
+       int dano = this.ataque - adversario.defesa; 
+
+       if (dano < 5) { 
+         dano = 5;                  // isso é para definir que o dano mínimo é 5. 
+           }
+      
+      if (rodada  % 2 == 0) {
+         dano = dano + 5;             //bônus das rodadas pares
+      }
+
+      adversario.receberDano (dano);
+         return dano; 
+      }
+     
   }
+
     

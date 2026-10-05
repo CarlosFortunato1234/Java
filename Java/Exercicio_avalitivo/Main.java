@@ -137,295 +137,140 @@ public class Main {
 
                     break;
                 // FIM DO CASE 1
-                case 2:
+                         case 2:
                     // INCIO DO CASE 2
                     System.out.println("Digite o código do primeiro robo: ");
-                    int codigo1 = s.nextInt();
+                    int codigo1 = lerInteiro(s);
 
                     System.out.println("Digite o código do segundo robo: ");
-                    int codigo2 = s.nextInt();
+                    int codigo2 = lerInteiro(s);
 
-                
-
-                    // abaixo eu faço uma validação para tentar verificar se esses robos existem
-
-                    // defino boolean robo 1 e 2 existe = false e caso ele encontre vai pra true se
-                    // continuar false é pq ele nao existe
-                    boolean robo1Existe = false;
-                    boolean robo2Existe = false;
+                    // abaixo eu busco os dois robos na lista
+                    // começo com robo1 e robo2 = null, e caso ele encontre o código na lista
+                    // guardo o robô ali, se continuar null é pq ele nao existe
+                    Robo robo1 = null;
+                    Robo robo2 = null;
 
                     for (Robo r : robos) {
                         if (r.codigo == codigo1) {
-                            robo1Existe = true;
+                            robo1 = r;
                         }
                         if (r.codigo == codigo2) {
-                            robo2Existe = true;
+                            robo2 = r;
                         }
-
                     }
 
-                    if (robo1Existe == false || robo2Existe == false) {
-                        System.out.println("Um ou mais robôs não existem! ");
-
-                    } else if (codigo1 == codigo2) {
+                    // INICIO DAS VALIDAÇÕES
+                    // se cair em qualquer um desses ifs o combate não acontece e ninguém é alterado
+                    if (codigo1 == codigo2) {
                         System.out.println("Os robôs devem ser diferentes! ");
 
-                    } 
-                    // INICIO DA VALIDAÇÃO DA ENERGIA: 
+                    } else if (robo1 == null || robo2 == null) {
+                        System.out.println("Um ou mais robôs não existem! ");
+
+                    } else if (robo1.energia < 30) {
+                        System.out.println("O primeiro robô está em recuperação! ");
+
+                    } else if (robo2.energia < 30) {
+                        System.out.println("O segundo robô está em recuperação! ");
+
+                    }
+                    // FIM DAS VALIDAÇÕES
                     else {
+                        // se chegou aqui o combate está autorizado
+                        System.out.println("COMBATE AUTORIZADO! ");
 
-                        boolean energiaValida = true; 
-                        int pontos1 = 0;
-                        int pontos2 = 0;
-                        for (Robo r: robos) {
-                            if (r.codigo == codigo1) {
-                                if (r.energia < 30) {
-                                    System.out.println("O primeiro robô está em recuperação!");
-                                    energiaValida = false;
-                                }
+                        // aqui eu defino quem ataca primeiro ANTES de começar a luta
+                        // o exercício diz que ataca primeiro quem tem MENOS pontos
+                        // e se der empate de pontos ataca o de menor código
+                        // guardo em "primeiro" e "segundo" e essa ordem vale pro combate inteiro
+                        Robo primeiro;
+                        Robo segundo;
 
-                            }
-                            if (r.codigo == codigo2) {
-                                if (r.energia < 30) {
-                                    System.out.println("O segundo robô está em recuperação! ");
-                                    energiaValida = false;
-                                }
-                            }
-                            if (r.codigo == codigo1) {
-                                pontos1 = r.pontos;
-                            }
-                            if (r.codigo == codigo2) {
-                                pontos2 = r.pontos;
-                            }
+                        if (robo1.pontos < robo2.pontos) {
+                            primeiro = robo1;
+                            segundo = robo2;
+                        } else if (robo2.pontos < robo1.pontos) {
+                            primeiro = robo2;
+                            segundo = robo1;
+                        } else if (robo1.codigo < robo2.codigo) {
+                            primeiro = robo1;
+                            segundo = robo2;
+                        } else {
+                            primeiro = robo2;
+                            segundo = robo1;
                         }
-                        if (energiaValida == true) {
-                            System.out.println("COMBATE AUTORIZADO! ");
-                            if (pontos1 > pontos2) {
-                                System.out.println("PRIMEIRO ROBO ATACA PRIMEIRO! ");
 
-                            } else if (pontos2 > pontos1) {
-                                System.out.println("SEGUNDO ROBO ATACA PRIMEIRO!");
+                        System.out.println(primeiro.nome + " ataca primeiro em todas as rodadas! ");
+                        System.out.println("Energia inicial: " + primeiro.nome + " = " + primeiro.energia
+                                + " | " + segundo.nome + " = " + segundo.energia);
 
+                        int rodada = 1;
+
+                        // o combate tem até 5 rodadas, mas para antes se algum robô zerar a energia
+                        // por isso a condição tem as 3 coisas juntas
+                        while (rodada <= 5 && primeiro.energia > 0 && segundo.energia > 0) {
+                            System.out.println("===== RODADA " + rodada + " =====");
+
+                            // ataque do primeiro robô
+                            int dano = primeiro.atacar(segundo, rodada);
+                            System.out.println(primeiro.nome + " atacou " + segundo.nome + " e causou " + dano + " de dano.");
+                            System.out.println("Energia restante de " + segundo.nome + ": " + segundo.energia);
+
+                            // o contra-ataque só acontece se o segundo ainda estiver vivo
+                            // se ele zerou o combate acaba na hora, sem direito a contra-ataque
+                            if (segundo.energia > 0) {
+                                dano = segundo.atacar(primeiro, rodada);
+                                System.out.println(segundo.nome + " atacou " + primeiro.nome + " e causou " + dano + " de dano.");
+                                System.out.println("Energia restante de " + primeiro.nome + ": " + primeiro.energia);
+
+                                if (primeiro.energia == 0) {
+                                    System.out.println(primeiro.nome + " ficou sem energia! Combate encerrado.");
+                                }
+                            } else {
+                                System.out.println(segundo.nome + " ficou sem energia! Combate encerrado, sem contra-ataque.");
                             }
-                              else if (codigo1 < codigo2) {
-                                System.out.println("PRIMEIRO ROBO ATACA PRIMEIRO");
-                              }
-                              else { 
-                                System.out.println("Segundo robo ataca primeiro! ");
-                              }
 
-                              int rodada = 1; 
-                              int ataque1= 0;
-                              int defesa1 = 0;
-                              int ataque2 = 0;
-                              int defesa2 = 0;
+                            rodada = rodada + 1;
+                        }
 
-                              for (Robo r : robos) {
-                                if (r.codigo == codigo1) {
-                                    ataque1 = r.ataque;
-                                    defesa1 = r.defesa;
-                                }
-                                if (r.codigo == codigo2) {
-                                    ataque2 = r.ataque; 
-                                    defesa2 = r.defesa;
-                                }
-                              }
+                        // RESULTADO FINAL
+                        System.out.println("===== RESULTADO FINAL =====");
+                        System.out.println("Energia final: " + primeiro.nome + " = " + primeiro.energia
+                                + " | " + segundo.nome + " = " + segundo.energia);
 
-                              while (rodada <= 5) {
-                                System.out.println("===== RODADA" + rodada + " =====");
-                                int numeroRodada = rodada;
-                                rodada = rodada + 1;
+                        // primeiro vejo se alguém zerou, quem zerou perdeu
+                        // se ninguém zerou, vence quem tem mais energia restante
+                        // se a energia for igual é empate
+                        // vencer() dá 3 pontos e 1 vitória, perder() dá 1 derrota
+                        // empatar() dá 1 ponto pra cada, sem mexer em vitórias e derrotas
+                        if (primeiro.energia == 0) {
+                            System.out.println(segundo.nome + " VENCEU!");
+                            segundo.vencer();
+                            primeiro.perder();
 
-                                int dano = 0;
+                        } else if (segundo.energia == 0) {
+                            System.out.println(primeiro.nome + " VENCEU!");
+                            primeiro.vencer();
+                            segundo.perder();
 
-                               if (pontos1 > pontos2 || (pontos1 == pontos2 && codigo1 < codigo2)) {
-    for (Robo r : robos) {
-        if (r.codigo == codigo1) {
-            dano = ataque1 - defesa2;
-        }
-    }
+                        } else if (primeiro.energia > segundo.energia) {
+                            System.out.println(primeiro.nome + " VENCEU!");
+                            primeiro.vencer();
+                            segundo.perder();
 
-} else {
-    for (Robo r : robos) {
-        if (r.codigo == codigo2) {
-             dano = ataque2 - defesa1;
+                        } else if (segundo.energia > primeiro.energia) {
+                            System.out.println(segundo.nome + " VENCEU!");
+                            segundo.vencer();
+                            primeiro.perder();
 
-        }
-    }
-}
-
- if (dano < 5) {
-    dano = 5;
- }
- if (numeroRodada % 2 == 0) {
-    dano = dano + 5;
-}
- if (pontos1 > pontos2 || (pontos1 == pontos2 && codigo1 < codigo2)) {
-
-    for (Robo r : robos) {
-        if (r.codigo == codigo2) {
-            r.receberDano(dano);
-            System.out.println("Energia do segundo robo: " + r.energia);
-        }
-    }
-
-} else {
-
-    for (Robo r : robos) {
-        if (r.codigo == codigo1) {
-            r.receberDano(dano);
-            System.out.println("Energia do primeiro robo: " + r.energia);
-        }
-    }
-}
- System.out.println("Dano casusado: " + dano);
- if (pontos1 > pontos2 || (pontos1 == pontos2 && codigo1 < codigo2)) {
-    for (Robo r : robos) {
-        if (r.codigo == codigo2 && r.energia == 0) {
-            System.out.println("SEGUNDO ROBO FOI DERROTADO!");
-            rodada = 6;
-        }
-    }
-} else {
-    for (Robo r : robos) {
-        if (r.codigo == codigo1 && r.energia == 0) {
-            System.out.println("PRIMEIRO ROBO FOI DERROTADO!");
-            rodada = 6;
-        }
-    }
-}
- if (pontos1 > pontos2 || (pontos1 == pontos2 && codigo1 < codigo2)) {
-
-    for (Robo r : robos) {
-        if (r.codigo == codigo2 && r.energia > 0) {
-
-            int contraAtaque = ataque2 - defesa1;
-
-            if (contraAtaque < 5) {
-                contraAtaque = 5;
-            }
-
-            for (Robo r2 : robos) {
-                if (r2.codigo == codigo1) {
-                    r2.receberDano(contraAtaque);
-                    System.out.println("Contra-ataque! Dano: " + contraAtaque);
-                    System.out.println("Energia do primeiro robo: " + r2.energia);
-                   if (r2.energia == 0) {
-                rodada = 6;
+                        } else {
+                            System.out.println("EMPATE!");
+                            primeiro.empatar();
+                            segundo.empatar();
+                        }
                     }
-                }
-            }
-        }
-    }
 
-} else {
-
-    for (Robo r : robos) {
-        if (r.codigo == codigo1 && r.energia > 0) {
-
-            int contraAtaque = ataque1 - defesa2;
-
-            if (contraAtaque < 5) {
-                contraAtaque = 5;
-            }
-
-            for (Robo r2 : robos) {
-                if (r2.codigo == codigo2) {
-                    r2.receberDano(contraAtaque);
-                    System.out.println("Contra-ataque! Dano: " + contraAtaque);
-                    System.out.println("Energia do segundo robo: " + r2.energia);
-                    if (r2.energia == 0) {
-    rodada = 6;
-}
-                }
-            }
-        }
-    }
-}
- 
-
-                    }
-                    
-                } 
-                int energia1 = 0;
-int energia2 = 0;
-
-for (Robo r : robos) {
-    if (r.codigo == codigo1) {
-        energia1 = r.energia;
-    }
-
-    if (r.codigo == codigo2) {
-        energia2 = r.energia;
-    }
-}
-
-if (energia1 == 0) {
-    System.out.println("SEGUNDO ROBO VENCEU!");
-
-    for (Robo r : robos) {
-        if (r.codigo == codigo1) {
-            r.perder();
-        }
-
-        if (r.codigo == codigo2) {
-            r.vencer();
-        }
-    }
-
-} else if (energia2 == 0) {
-    System.out.println("PRIMEIRO ROBO VENCEU!");
-
-    for (Robo r : robos) {
-        if (r.codigo == codigo1) {
-            r.vencer();
-        }
-
-        if (r.codigo == codigo2) {
-            r.perder();
-        }
-    }
-
-} else if (energia1 > energia2) {
-    System.out.println("PRIMEIRO ROBO VENCEU!");
-
-    for (Robo r : robos) {
-        if (r.codigo == codigo1) {
-            r.vencer();
-        }
-
-        if (r.codigo == codigo2) {
-            r.perder();
-        }
-    }
-
-} else if (energia2 > energia1) {
-    System.out.println("SEGUNDO ROBO VENCEU!");
-
-    for (Robo r : robos) {
-        if (r.codigo == codigo1) {
-            r.perder();
-        }
-
-        if (r.codigo == codigo2) {
-            r.vencer();
-        }
-    }
-
-} else {
-    System.out.println("EMPATE!");
-
-    for (Robo r : robos) {
-        if (r.codigo == codigo1) {
-            r.empatar();
-        }
-
-        if (r.codigo == codigo2) {
-            r.empatar();
-        }
-    }
-}
-            }
                     break;
                 // FIM DO CASE 2
                 case 3:
@@ -480,4 +325,20 @@ if (energia1 == 0) {
 
         return opt;
     }
+    public static int lerInteiro(Scanner s) {
+    int numero = 0;
+    boolean valido = false;
+
+    while (valido == false) {
+        try {
+            numero = s.nextInt();
+            valido = true;
+        } catch (InputMismatchException e) {
+            s.next();
+            System.out.println("Entrada inválida! Digite um número inteiro: ");
+        }
+    }
+
+    return numero;
+}
 }
