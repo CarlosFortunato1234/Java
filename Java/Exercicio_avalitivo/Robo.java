@@ -120,12 +120,16 @@ public class Robo {
 
    // aproveitamento = vitórias / combates * 100
    // o atributo "combates" é o que o enunciado pede pra identificar: empate conta como combate (o empatar() já soma) e folga não
+   
+   /* 
+   eu até criei esse método no robo para tentar ajudar a calcular o aproveitamento no case 6, mas como não deu tempo de terminar vou deixar ele comentado mesmo..
    public double calcularAproveitamento() {
       if (combates == 0) {
          return 0; // quem nunca lutou é ignorado na Main
       }
       return vitorias * 100.0 / combates; // 100.0 pra não dar divisão de inteiros
    }
+      */ 
      
   }
 

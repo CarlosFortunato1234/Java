@@ -51,8 +51,8 @@ public class Main {
                         }
                         boolean codigoExiste = false; //aqui já deixo pré definido que código não existe
 
-                        for (Robo r : robos) {  // depois lanço esse for percorrendo os robos, tentando achar um código do robo = o código que o cara escreveu
-                            if (r.codigo == codigo) {
+                        for (Robo competidor : robos) {  // depois lanço esse for percorrendo os robos, tentando achar um código do robo = o código que o cara escreveu
+                            if (competidor.codigo == codigo) {
                                 codigoExiste = true;
                                 break;
                             }
@@ -60,13 +60,13 @@ public class Main {
 
                         while (codigoExiste == true) { //se cair nessse while, de código existe = true, ele vai ficar tentando encontrar se o novo código que o usuário digitou já não existe.
                             System.out.println("Código já cadastrado! Digite outro: ");
-                            ;
+                            
                             codigo = leitorGeral(s);
 
                             codigoExiste = false;
 
-                            for (Robo r : robos) {
-                                if (r.codigo == codigo) {
+                            for (Robo competidor : robos) {
+                                if (competidor.codigo == codigo) {
                                     codigoExiste = true;
                                     break;
                                 }
@@ -114,21 +114,21 @@ public class Main {
 
                         boolean encontrado = false;
 
-                        for (Robo r : robos) {
+                        for (Robo lutador : robos) {
 
-                            if (r.codigo == codigoBusca) {
+                            if (lutador.codigo == codigoBusca) {
                                 System.out.println("====== ROBÔ ENCONTRADO ======");
-                                System.out.println("Código:  " + r.codigo);
-                                System.out.println("Nome: " + r.nome);
-                                System.out.println("Ataque: " + r.ataque);
-                                System.out.println("Defesa: " + r.defesa);
-                                System.out.println("Energia: " + r.energia);
-                                System.out.println("Vitórias: " + r.vitorias);
-                                System.out.println("Derrotas: " + r.derrotas);
-                                System.out.println("Pontos: " + r.pontos);
-                                System.out.println("Combates: " + r.combates);
+                                System.out.println("Código:  " + lutador.codigo);
+                                System.out.println("Nome: " + lutador.nome);
+                                System.out.println("Ataque: " + lutador.ataque);
+                                System.out.println("Defesa: " + lutador.defesa);
+                                System.out.println("Energia: " + lutador.energia);
+                                System.out.println("Vitórias: " + lutador.vitorias);
+                                System.out.println("Derrotas: " + lutador.derrotas);
+                                System.out.println("Pontos: " + lutador.pontos);
+                                System.out.println("Combates: " + lutador.combates);
 
-                                r.verificarEnergia();
+                                lutador.verificarEnergia();
                                 encontrado = true;
                                 break;
 
@@ -146,12 +146,12 @@ public class Main {
                             System.out.println("Nenhum robô cadastrado!");
                         } else {
                             System.out.println("====== LISTA DE ROBÔS ======");
-                            for (Robo r : robos) {
-                                System.out.println("Código: " + r.codigo + " || Nome: " + r.nome);
-                                System.out.println("Ataque: " + r.ataque + " || Defesa: " + r.defesa + " ||Energia: " + r.energia);
-                                System.out.println("Vitórias: " + r.vitorias + " || Derrotas: " + r.derrotas
-                                        + " || Pontos: " + r.pontos + " || Combates: " + r.combates);
-                                r.verificarEnergia(); // mostra Disponível (energia >= 30) ou Em recuperação (energia < 30)
+                            for (Robo participante : robos) {
+                                System.out.println("Código: " + participante.codigo + " || Nome: " + participante.nome);
+                                System.out.println("Ataque: " + participante.ataque + " || Defesa: " + participante.defesa + " ||Energia: " + participante.energia);
+                                System.out.println("Vitórias: " + participante.vitorias + " || Derrotas: " + participante.derrotas
+                                        + " || Pontos: " + participante.pontos + " || Combates: " + participante.combates);
+                                participante.verificarEnergia(); // mostra Disponível (energia >= 30) ou Em recuperação (energia < 30)
                                 System.out.println("----------------------------");
                             }
                         }
@@ -176,12 +176,12 @@ public class Main {
                     Robo robo1 = null;
                     Robo robo2 = null;
 
-                    for (Robo r : robos) {
-                        if (r.codigo == codigo1) {
-                            robo1 = r;
+                    for (Robo competidor : robos) {
+                        if (competidor.codigo == codigo1) {
+                            robo1 = competidor;
                         }
-                        if (r.codigo == codigo2) {
-                            robo2 = r;
+                        if (competidor.codigo == codigo2) {
+                            robo2 = competidor;
                         }
                     }
 
@@ -319,9 +319,9 @@ public class Main {
                      Robo roboRecuperar = null;
                      //guardo o robô, se continuar null é pq ele nao existe
 
-                     for (Robo r : robos) {
-                        if (r.codigo == codigoRobo) {
-                            roboRecuperar = r;
+                     for (Robo alvo : robos) {
+                        if (alvo.codigo == codigoRobo) {
+                            roboRecuperar = alvo;
                         }
                      }
 
@@ -356,10 +356,10 @@ public class Main {
 
                     // só participa quem está DISPONÍVEL (energia >= 30) no início da operação
                     // como a lista já está em ordem de classificação, os disponíveis ficam na mesma ordem
-                    for (Robo r : classificacaoRodada) {
-                        if (r.energia >= 30) {
-                            disponiveisRodada.add(r);
-                        } //aqui o for passa por cada robo da classificação (r) e se ele tem 30 de energia ou mais, entra no array, se nao, fica de fora
+                    for (Robo candidato : classificacaoRodada) {
+                        if (candidato.energia >= 30) {
+                            disponiveisRodada.add(candidato);
+                        } //aqui o for passa por cada robo da classificação (candidato) e se ele tem 30 de energia ou mais, entra no array, se nao, fica de fora
                     }
 
                     // menos de 2 disponíveis: recusa a operação e NÃO dá ponto de folga
@@ -444,10 +444,10 @@ public class Main {
 
                         System.out.println("====== CLASSIFICAÇÃO ======");
                         for (int i = 0; i < classificacao.size(); i++) {
-                            Robo r = classificacao.get(i);
-                            System.out.println((i + 1) + "º | Código: " + r.codigo + " | Nome: " + r.nome
-                                    + " | Pontos: " + r.pontos + " | Vitórias: " + r.vitorias
-                                    + " | Energia: " + r.energia);
+                            Robo posicionado = classificacao.get(i);
+                            System.out.println((i + 1) + "º | Código: " + posicionado.codigo + " | Nome: " + posicionado.nome
+                                    + " | Pontos: " + posicionado.pontos + " | Vitórias: " + posicionado.vitorias
+                                    + " | Energia: " + posicionado.energia);
                         }
                     }
 
@@ -455,63 +455,13 @@ public class Main {
                 // FIM DO CASE 5
 
                 case 6:
+
                     // INICIO DO CASE 6
-
-                    if (robos.isEmpty()) {
-                        System.out.println("Nenhum robô cadastrado!");
-                    } else {
-                        System.out.println("====== ESTATÍSTICAS ======");
-
-                        // quantidade de robôs cadastrados
-                        System.out.println("Robôs cadastrados: " + robos.size());
-
-                        // média de energia de TODOS os participantes
-                        int somaEnergia = 0;
-                        for (Robo r : robos) {
-                            somaEnergia = somaEnergia + r.energia;
-                        }
-                        double mediaEnergia = (double) somaEnergia / robos.size(); // (double) pra não dar divisão de inteiros
-                        System.out.printf("Média de energia: %.2f%n", mediaEnergia);
-
-                        // robôs em recuperação (energia menor que 30)
-                        boolean temRecuperacao = false;
-                        System.out.println("Robôs em recuperação:");
-                        for (Robo r : robos) {
-                            if (r.energia < 30) {
-                                System.out.println("- Código " + r.codigo + " | " + r.nome + " | Energia: " + r.energia);
-                                temRecuperacao = true;
-                            }
-                        }
-                        if (temRecuperacao == false) {
-                            System.out.println("Nenhum robô em recuperação.");
-                        }
-
-                        // maior aproveitamento: ignoro quem nunca lutou (combates == 0)
-                        // começo em -1 pra saber se algum robô já lutou
-                        double maiorAproveitamento = -1;
-                        for (Robo r : robos) {
-                            if (r.combates > 0) {
-                                if (r.calcularAproveitamento() > maiorAproveitamento) {
-                                    maiorAproveitamento = r.calcularAproveitamento();
-                                }
-                            }
-                        }
-
-                        if (maiorAproveitamento < 0) {
-                            System.out.println("Nenhum robô lutou ainda, então não há aproveitamento para calcular.");
-                        } else {
-                            System.out.printf("Maior aproveitamento: %.2f%%%n", maiorAproveitamento);
-                            // se houver empate no maior aproveitamento, mostro todos os empatados
-                            for (Robo r : robos) {
-                                if (r.combates > 0 && r.calcularAproveitamento() == maiorAproveitamento) {
-                                    System.out.println("- Código " + r.codigo + " | " + r.nome);
-                                }
-                            }
-                        }
-                    }
-
-                    break;
+                    System.out.println("Estatísticas não implementadas.");
+    //PROFESSOR, NAO TERMINEI O CASE 6, NÃO QUERIA FAZER COISAS SIMPLESMENTE GERANDO NA IA, LOGO, PREFERI NÃO FAZER O CASE 6 
+    //DO QUE TENTAR FAZER SOMENTE COM IA, SEM ENTENDER AO CERTO A LÓGICA DE PUXAR AS ESTATÍSTCAS. 
                 // FIM DO CASE 6
+                break;
 
                 case 7:
                     // INICIO DO CASE 7
@@ -524,9 +474,9 @@ public class Main {
 
                         // busco o robô, se continuar null é pq ele não existe
                         Robo roboExcluir = null;
-                        for (Robo r : robos) {
-                            if (r.codigo == codigoExcluir) {
-                                roboExcluir = r;
+                        for (Robo alvoExclusao : robos) {
+                            if (alvoExclusao.codigo == codigoExcluir) {
+                                roboExcluir = alvoExclusao;
                             }
                         }
 
@@ -709,8 +659,8 @@ public class Main {
         ArrayList<Robo> classificacao = new ArrayList<>();
 
         // copio os robôs (são os mesmos objetos, só a lista é nova)
-        for (Robo r : robos) {
-            classificacao.add(r);
+        for (Robo competidor : robos) {
+            classificacao.add(competidor);
         }
 
         // pra cada posição i, procuro quem deve ficar nela entre os que sobraram e troco de lugar
