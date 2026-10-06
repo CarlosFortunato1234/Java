@@ -269,6 +269,9 @@ public class Main {
                         // se a energia for igual é empate
                         // vencer() dá 3 pontos e 1 vitória, perder() dá 1 derrota
                         // empatar() dá 1 ponto pra cada, sem mexer em vitórias e derrotas
+
+
+                        //cada .vencer() e .()perder está chamando o método de vencer e perder lá do robo! 
                         if (primeiro.energia == 0) {
                             System.out.println(segundo.nome + " VENCEU!");
                             segundo.vencer();
@@ -276,8 +279,8 @@ public class Main {
 
                         } else if (segundo.energia == 0) {
                             System.out.println(primeiro.nome + " VENCEU!");
-                            primeiro.vencer();
-                            segundo.perder();
+                            primeiro.vencer();//como por exemplo aqui
+                            segundo.perder(); //e aqui também
 
                         } else if (primeiro.energia > segundo.energia) {
                             System.out.println(primeiro.nome + " VENCEU!");
@@ -342,39 +345,63 @@ public class Main {
                     
                     break;
                 // FIM DO CASE 3
+
+                //NO CASE 4 TEM COMENTARIO PRA CARAMBA PQ FOI A LÓGICA MAIS DIFICIL QUE EU TIVE
                 case 4:
                     // INICIO DO CASE 4
 
                     // 1) pego a classificação atual (lista auxiliar, a lista principal não muda)
                     ArrayList<Robo> classificacaoRodada = montarClassificacao(robos);
-                    ArrayList<Robo> disponiveisRodada = new ArrayList<>();
+                    ArrayList<Robo> disponiveisRodada = new ArrayList<>(); //criei esse arraylist para armazenar só os robos que podem lutar
 
                     // só participa quem está DISPONÍVEL (energia >= 30) no início da operação
                     // como a lista já está em ordem de classificação, os disponíveis ficam na mesma ordem
                     for (Robo r : classificacaoRodada) {
                         if (r.energia >= 30) {
                             disponiveisRodada.add(r);
-                        }
+                        } //aqui o for passa por cada robo da classificação (r) e se ele tem 30 de energia ou mais, entra no array, se nao, fica de fora
                     }
 
                     // menos de 2 disponíveis: recusa a operação e NÃO dá ponto de folga
                     if (disponiveisRodada.size() < 2) {
-                        System.out.println("Rodada geral recusada! É preciso ter pelo menos 2 robôs disponíveis.");
-                    } else {
+                        System.out.println("Rodada geral recusada! É preciso ter pelo menos 2 robôs disponíveis."); // aqui ele só faz uma validação, o tamanho do disponiveisRodada se é menor que 2, se for menor não da para fazer a rodada geral.
+                    } else { 
 
-                        // 2) defino TODOS os confrontos ANTES de lutar
-                        // duas listas paralelas: o confronto k é confrontoA[k] contra confrontoB[k]
-                        // 1º x 2º, 3º x 4º e assim por diante
-                        ArrayList<Robo> confrontoA = new ArrayList<>();
-                        ArrayList<Robo> confrontoB = new ArrayList<>();
-                        Robo roboFolga = null;
+                        ArrayList<Robo> confrontoA = new ArrayList<>(); //aqui eu crio um arraylist confrontoA
+                        ArrayList<Robo> confrontoB = new ArrayList<>(); // e aqi tbm crio um arraylist chamado confrontoB
+                        Robo roboFolga = null; //aqui ja defino roboFolga = null pq teoricamente só vai ter alguem se a quantidade de robos for impar
+                   /*
+                   Aqui no caso, ele va pegar a lista disponiveisRodada, já na ordem de classificação, o while vai percorrer essa
+                   lista de dois em dois, o i é a posição do robo na lista e começa em 0 
 
+                   vou dar um exemplo
+
+                   posição 0 -> fredzao (1)
+                   posição 1 -> eu (2)
+                   posicao 2 -> mateus
+                   posicao 3 -> carlao
+                   */
                         int i = 0;
+                        //a condição i + 1 <size() pergunta se existe um robo log odepois do i para o seu adversario
                         while (i + 1 < disponiveisRodada.size()) {
-                            confrontoA.add(disponiveisRodada.get(i));
-                            confrontoB.add(disponiveisRodada.get(i + 1));
-                            i = i + 2;
+                            confrontoA.add(disponiveisRodada.get(i)); // o get (i) pega o robo que ta na posição i, o i começa em 0 e anda de 2 em 2
+                            confrontoB.add(disponiveisRodada.get(i + 1)); //pega o robo da posição logo a seguir
+                            i = i + 2; // ele pega o valor que o i tem agora e soma 2 e guarda dnv no i.
                         }
+
+                               /*
+                  Dessa forma, na primeira volta o i vale 0, então ele pega o 1 da classificação, a posição 0 no caso o fredzao, depois ele pega o 2, no caso o EU
+                  e na segunda volta o i vale 2, então e pega o mateus e depois pega o carlao
+
+
+                   posição 0 -> fredzao (1)
+                   posição 1 -> eu (2)
+                   posicao 2 -> mateus
+                   posicao 3 -> carlao
+
+
+                   o add coloca o robo que o get trouxe dentro da lista de conforotnos.
+                   */
 
                         // se sobrou 1 (quantidade ímpar), o último fica sem adversário e ganha a folga
                         if (i < disponiveisRodada.size()) {
@@ -596,7 +623,7 @@ public class Main {
         int rodada = 1;
 
         // até 5 rodadas, mas para antes se alguém zerar a energia
-        while (rodada <= 5 && primeiro.energia > 0 && segundo.energia > 0) {
+        while (rodada <= 5 && primeiro.energia > 0 && segundo.energia > 0) { //essa aqui são as validaçções básicas que o exercicio pede para as 5 rodadas
             System.out.println("===== RODADA " + rodada + " =====");
 
             int dano = primeiro.atacar(segundo, rodada);
