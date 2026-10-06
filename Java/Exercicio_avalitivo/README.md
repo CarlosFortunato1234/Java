@@ -12,10 +12,10 @@ TESTE DA ATIVIDADE AVALIATIVA!
 Cadastrando robôs.. cadastrei 5: 
 
 No caso, cadastrei os nomes: 
-MATEUZAO
-FREDZAO
-EU 
-KAUEZAO 
+MATEUZAO,
+FREDZAO,
+EU,
+KAUEZAO e  
 CARLAO
 
 
