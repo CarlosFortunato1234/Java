@@ -11,6 +11,13 @@ TESTE DA ATIVIDADE AVALIATIVA!
 
 Cadastrando robôs.. cadastrei 5: 
 
+No caso, cadastrei os nomes: 
+MATEUZAO
+FREDZAO
+EU 
+KAUEZAO 
+CARLAO
+
 
 <img width="767" height="829" alt="image" src="https://github.com/user-attachments/assets/c4d86b10-dcb0-4499-b368-30e527ca2e6d" />
 
